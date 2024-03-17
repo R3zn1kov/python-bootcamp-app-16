@@ -10,7 +10,7 @@
     <body>
     <div class="container">
         <h1 class="mt-4 mb-4">Job application form</h1>
-            <form>
+            <form method="POST" action="/">
                 <div class="form-group mb-4" >
                     <label for="first_name">Nome:</label>
                     <input class="form-control" type="text" id="first_name" name="first_name" required>
@@ -31,21 +31,30 @@
                     <label>Occupazione:</label>
                     <br>
                     <div class="btn-group-vertical" id="occupation">
-                        <input class="btn-check form-control" type="radio" id="employed" name="occupation" required>
+                        <input class="btn-check form-control" type="radio" id="employed" name="occupation" value="employed" required>
                         <label class="btn btn-outline-primary" for="employed"> Occupato:</label>
 
-                        <input class="btn-check form-control" type="radio" id="unemployed" name="occupation" required>
+                        <input class="btn-check form-control" type="radio" id="unemployed" name="occupation" value="unemployed" required>
                         <label class="btn btn-outline-secondary" for="unemployed"> Disoccupato:</label>
 
-                        <input class="btn-check form-control" type="radio" id="self-employed" name="occupation" required>
+                        <input class="btn-check form-control" type="radio" id="self-employed" name="occupation" value="self-employed" required>
                         <label class="btn btn-outline-secondary" for="self-employed"> Libero professionista:</label>
 
-                        <input class="btn-check form-control" type="radio" id="student" name="occupation" required>
+                        <input class="btn-check form-control" type="radio" id="student" name="occupation" value="student" required>
                         <label class="btn btn-outline-secondary" for="student"> Studente:</label>
 
                     </div>
                 </div>
-                <button class="btn btn-primary" type="Submit"> Invia </button>
+                <button class="btn btn-primary" type="submit"> Invia </button>
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <div class="alert alert-success">
+                    {% for message in messages %}
+                    {{message}}
+                    {% endfor%}
+                </div>
+                {% endif %}
+                {% endwith %}
             </form>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
